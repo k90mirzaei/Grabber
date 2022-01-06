@@ -1,14 +1,24 @@
 {
-    "name": "codefarm/grabber",
-    "description": "customizable package to extract data from html",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "codefarm",
-            "email": "codefarm.bs@gmail.com"
-        }
-    ],
-    "require-dev": {
-        "orchestra/testbench": "^6.23"
+  "name": "codefarm/grabber",
+  "description": "customizable package to extract data from html",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "codefarm",
+      "email": "codefarm.bs@gmail.com"
     }
+  ],
+  "require-dev": {
+    "orchestra/testbench": "^6.23"
+  },
+  "autoload": {
+    "psr-4": {
+      "codefarm\\Grabber\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "codefarm\\Grabber\\Tests\\": "tests/"
+    }
+  }
 }
