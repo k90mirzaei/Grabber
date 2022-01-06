@@ -9,7 +9,7 @@ abstract class FieldContract
      *
      * @var string
      */
-    protected static string $pattern;
+    protected static string $pattern = '';
 
     /**
      * Processes the field and parse it from raw data
@@ -20,13 +20,13 @@ abstract class FieldContract
      */
     public static function process($type, $data): array
     {
-        if (!self::$pattern)
+        if (!static::$pattern)
             return [];
 
-        preg_match(self::$pattern, $data, $matches);
+        preg_match(static::$pattern, $data, $matches);
 
         return [
-            $type => $matches[1]
+            $type => trim($matches[1])
         ];
     }
 }

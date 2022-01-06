@@ -8,15 +8,15 @@ use codefarm\Grabber\Fields\Thumbnail;
 use codefarm\Grabber\Fields\Title;
 use Illuminate\Support\Facades\File;
 
-class BlogPostParser
+class htmlParser
 {
-    protected $data;
-
-    protected $rawData;
-
     protected $filename;
 
     protected $fields;
+
+    protected $data = [];
+
+    protected $rawData;
 
     public function __construct($filename)
     {
@@ -24,18 +24,24 @@ class BlogPostParser
 
         $this->fetchFields();
 
+        $this->fetchRawData();
+
         $this->parseData();
     }
 
     protected function fetchFields()
     {
-        $this->fields = config('grabber.fields');
+        $this->fields = Grabber::fields();
+    }
+
+    protected function fetchRawData()
+    {
+        $this->rawData = File::exists($this->filename) ? File::get($this->filename) : $this->filename;
     }
 
     protected function parseData()
     {
-        // content of html
-        $this->rawData = File::get($this->filename);
+
 
         $this->data = array_merge($this->data, Title::process('title', $this->rawData));
         $this->data = array_merge($this->data, Description::process('description', $this->rawData));
