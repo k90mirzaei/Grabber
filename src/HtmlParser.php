@@ -2,10 +2,6 @@
 
 namespace codefarm\Grabber;
 
-use codefarm\Grabber\Fields\Content;
-use codefarm\Grabber\Fields\Description;
-use codefarm\Grabber\Fields\Thumbnail;
-use codefarm\Grabber\Fields\Title;
 use Illuminate\Support\Facades\File;
 
 class htmlParser
@@ -41,12 +37,12 @@ class htmlParser
 
     protected function parseData()
     {
-
-
-        $this->data = array_merge($this->data, Title::process('title', $this->rawData));
-        $this->data = array_merge($this->data, Description::process('description', $this->rawData));
-        $this->data = array_merge($this->data, Thumbnail::process('thumbnail', $this->rawData));
-        $this->data = array_merge($this->data, Content::process('content', $this->rawData));
+        foreach ($this->fields as $field) {
+            $this->data = array_merge(
+                $this->data,
+                $field::process(strtolower(class_basename($field)), $this->rawData)
+            );
+        }
     }
 
     public function getData()
