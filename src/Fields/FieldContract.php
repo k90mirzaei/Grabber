@@ -21,12 +21,10 @@ abstract class FieldContract
     public static function process($type, $data): array
     {
         if (!static::$pattern)
-            return [];
+            return []; // exception
 
         preg_match(static::$pattern, $data, $matches);
 
-        return [
-            $type => trim($matches[1])
-        ];
+        return $matches && count($matches) > 1 ? [$type => trim($matches[1])] : [];
     }
 }

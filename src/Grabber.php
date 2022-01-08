@@ -2,15 +2,32 @@
 
 namespace codefarm\Grabber;
 
+use Illuminate\Support\Facades\Facade;
+
 class Grabber
 {
-    public static function fields()
+    /**
+     * @var array
+     */
+    protected $fields = [];
+
+    /**
+     * Merges an array of fields into the fields variable.
+     *
+     * @param array $fields
+     */
+    public function fields(array $fields)
     {
-        return [
-            Fields\Title::class,
-            Fields\Description::class,
-            Fields\Thumbnail::class,
-            Fields\Content::class
-        ];
+        $this->fields = array_merge($this->fields, $fields);
+    }
+
+    /**
+     * Returns the list of available fields in reverse order.
+     *
+     * @return array
+     */
+    public function availableFields(): array
+    {
+        return $this->fields;
     }
 }

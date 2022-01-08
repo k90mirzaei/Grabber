@@ -3,8 +3,9 @@
 namespace codefarm\Grabber;
 
 use Illuminate\Support\Facades\File;
+use codefarm\Grabber\Facade\Grabber;
 
-class htmlParser
+class HtmlParser
 {
     protected $filename;
 
@@ -27,7 +28,7 @@ class htmlParser
 
     protected function fetchFields()
     {
-        $this->fields = Grabber::fields();
+        $this->fields = Grabber::availableFields();
     }
 
     protected function fetchRawData()
@@ -45,7 +46,7 @@ class htmlParser
         }
     }
 
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
