@@ -1,13 +1,25 @@
 {
   "name": "codefarm/grabber",
-  "description": "customizable package to extract data from html",
-  "license": "MIT",
+  "type": "library",
+  "description": "customizable package to grab data from webpage using php",
+  "keywords": [
+    "php",
+    "scrape",
+    "laravel",
+    "HtmlParser"
+  ],
   "authors": [
     {
       "name": "codefarm",
-      "email": "codefarm.bs@gmail.com"
+      "email": "codefarm.bs@gmail.com",
+      "homepage": "https://percept.ir/@codefarm"
     }
   ],
+  "homepage": "https://github.com/codefarm-bs/Grabber",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.0"
+  },
   "require-dev": {
     "orchestra/testbench": "^6.23"
   },
@@ -20,5 +32,8 @@
     "psr-4": {
       "codefarm\\Grabber\\Tests\\": "tests/"
     }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
   }
 }
