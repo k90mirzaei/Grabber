@@ -2,8 +2,6 @@
 
 namespace codefarm\Grabber;
 
-use Illuminate\Support\Facades\Facade;
-
 class Grabber
 {
     /**

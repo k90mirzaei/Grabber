@@ -30,6 +30,9 @@ class ParserTest extends TestCase
 
         $html = '<div id="content">body</div>';
         $this->assertEquals('body', (new HtmlParser($html))->getData()['content']);
+
+        $html = '<meta itemprop="datePublished" property="article:published_time" content="1/8/2022 2:31:13 PM">';
+        $this->assertInstanceOf(Carbon::class, (new HtmlParser($html))->getData()['date']);
     }
 
     /** @test */
@@ -41,19 +44,6 @@ class ParserTest extends TestCase
 
         $html = '<h1>This is a new Title</h1>';
         $this->assertEquals('This is a new Title', (new HtmlParser($html))->getData()['title']);
-    }
-
-    /** @test */
-    public function add_date_field_to_grabber()
-    {
-        Grabber::fields([
-            \codefarm\Grabber\Tests\data\Date::class
-        ]);
-
-        $html = '<meta itemprop="datePublished" property="article:published_time" content="1/8/2022 2:31:13 PM">';
-
-        $this->assertInstanceOf(Carbon::class, (new HtmlParser($html))->getData()['date']);
-
     }
 }
 

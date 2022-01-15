@@ -1,9 +1,9 @@
-# Customizable package to grab data from webpage using PHP
+# Webpage data Grabber
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/codefarm/grabber.svg?style=flat-square)](https://packagist.org/packages/codefarm/grabber)
 [![Total Downloads](https://img.shields.io/packagist/dt/codefarm/grabber.svg?style=flat-square)](https://packagist.org/packages/codefarm/grabber)
 
-This customizable package can extract data from website and html files. Here's how you can use it:
+This customizable package can extract data from website and html files using php. Here's how you can use it:
 
 
 ## Installation

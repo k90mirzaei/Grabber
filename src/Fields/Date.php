@@ -1,9 +1,8 @@
 <?php
 
-namespace codefarm\Grabber\Tests\data;
+namespace codefarm\Grabber\Fields;
 
 use Carbon\Carbon;
-use codefarm\Grabber\Fields\FieldContract;
 
 class Date extends FieldContract
 {

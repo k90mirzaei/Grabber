@@ -18,10 +18,15 @@
   "homepage": "https://github.com/codefarm-bs/Grabber",
   "license": "MIT",
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.4",
+    "mockery/mockery": "^1.4"
   },
   "require-dev": {
-    "orchestra/testbench": "^6.23"
+    "orchestra/testbench": "^6.23",
+    "laravel/legacy-factories": "^1.1"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
   },
   "autoload": {
     "psr-4": {
@@ -33,7 +38,11 @@
       "codefarm\\Grabber\\Tests\\": "tests/"
     }
   },
-  "scripts": {
-    "test": "vendor/bin/phpunit"
+  "extra": {
+    "laravel": {
+      "providers": [
+        "codefarm\\Grabber\\BaseServiceProvider"
+      ]
+    }
   }
 }

@@ -2,8 +2,8 @@
 
 namespace codefarm\Grabber;
 
-use Illuminate\Support\ServiceProvider;
 use codefarm\Grabber\Facade\Grabber;
+use Illuminate\Support\ServiceProvider;
 
 class BaseServiceProvider extends ServiceProvider
 {
@@ -15,6 +15,8 @@ class BaseServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerResources();
+        $this->registerPublishes();
+
         $this->registerFields();
     }
 
@@ -25,19 +27,32 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->app->singleton('Grabber', function () {
+            return new \codefarm\Grabber\Grabber();
+        });
     }
 
     /**
-     * Register any bindings to the app.
+     * Register the package resources.
      *
      * @return void
      */
     protected function registerResources()
     {
-        $this->app->singleton('Grabber', function () {
-            return new \codefarm\Grabber\Grabber();
-        });
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+
+    /**
+     * Register the package publishes.
+     *
+     * @return void
+     */
+    protected function registerPublishes()
+    {
+        $this->publishes([
+            __DIR__ . '/../database/migrations/create_posts_table.php' =>
+                database_path('migrations/' . date('Y_m_d_His', time()) . '_create_posts_table.php')
+        ], 'grabber-migrations');
     }
 
     /**
@@ -52,6 +67,7 @@ class BaseServiceProvider extends ServiceProvider
             Fields\Thumbnail::class,
             Fields\Description::class,
             Fields\Content::class,
+            Fields\Date::class,
         ]);
     }
 }
